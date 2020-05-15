@@ -1,0 +1,112 @@
+
+/*-----------main ---------------------*/
+.MovieApp{
+  background-color:#021827;
+ 
+}
+/*-----------search ---------------------*/
+.nav{
+ 
+  background-color:  #02121f;
+  display: flex !important;
+  justify-content: space-around !important ;
+  position:fixed !important ;
+  width: 100%;
+  z-index: 2;
+}
+.search{
+   background-color: rgb(230, 219, 219);
+   border: none;
+}
+input{
+  padding : 10px
+}
+/*----------- liste + cardMovies ---------------------*/
+.img-movie{
+  width: 227px;
+  height: 310px;
+}
+
+.movie-list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+ 
+  
+  
+}
+
+.list-content{
+  margin: 15px;
+  margin-bottom: 10px ;
+  border-radius: 5px;
+  border: none;
+  width: 225px;
+  
+}
+
+.movie-name{
+  font-size: 14px;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  color: aliceblue;
+}
+/*----------- ADD MODAL ---------------------*/
+.button-add{
+  margin-top: 140px !important;
+  margin-left: 45%;
+  
+}
+.addModal{
+  background-color: #02121f !important;
+  color: aliceblue;
+
+}
+.addBody{
+  display: flex;
+  flex-direction: column;
+}
+input {
+  border-radius: 5px;
+ 
+}
+.inputAdd{
+  margin: 8px;
+  border: none;
+}
+
+/*----------- Description ---------------------*/
+.info{
+  display: flex;
+  justify-content: space-around;
+}
+.img_descr{
+  width: 250px;
+  height: 300x;
+  border-radius: 5px;
+}
+
+.info h5{
+  color:#dd4445;
+  
+}
+.info > p {
+  padding-left: 20px;
+}
+.addBody > h5{
+  color:#dd4445;
+  margin-top: 10px;
+}
+
+.starRating{
+  display: flex;
+  justify-content: space-around;
+}
+.jaja{
+  color: white;
+}
