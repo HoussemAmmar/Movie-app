@@ -1,5 +1,6 @@
 import React , {Component} from 'react';
 import {Navbar ,Button} from 'react-bootstrap'
+import {Cube} from 'styled-loaders-react'
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -24,20 +25,29 @@ class App extends Component {
       starRate: null, starClicked:"☆",
       search : '',
       totStars:[1,2,3,4,5],
-
-       f : []
+       f : [],
+       loading : true
       }
       
-    
-      
   }
+      
+  componentDidMount() {
+     setTimeout (()=> {
+       this.setState({loading : false})} ,3000) 
+  }
+
+   
+      
+  
  
     handleClose=()=> {
          this.setState({
          show:false
+
          
      })
      }
+     
  
      handleShow=()=>{
          this.setState({
@@ -110,70 +120,52 @@ class App extends Component {
       
   
   render(){
-    return (
-      <div className = "MovieApp">
-        <Navbar className="nav">
-          <img src={require('./Movie.png')} height="100px"/>
+    if (this.state.loading){
+      return <Cube/>
+    }
+    else {
+      return (
+        <div className = "MovieApp">
+          <Navbar className="nav">
+            <img src={require('./Movie.png')} height="100px"/>
+            
+             <Search handleSearch ={this.handleSearch} search = {this.state.search}/>
+             <div className="starRating">
+             <div >
+                    {this.state.totStars.map(el => 
+                    <button onClick={()=>this.getRate(el)}>{this.state.starClicked}
+                      </button>)}
+                 </div>
+                 <div className="resetRate">
+                   <button onClick={()=> this.resetRate()}> 
+                   <img src="https://img.favpng.com/19/16/1/computer-icons-reboot-reset-png-favpng-mGHHcjcZHFyMyHxQrmbfkzBaR.jpg" width="35px"/> </button>
+                 </div>
+             </div>
+  
+             <div>
+             <Button variant="outline-danger">Sign Up</Button>
+             <Button variant="outline-primary">Login</Button>
+             </div>
+  
+          </Navbar>
           
-
+  
+  
+          <AddMovie  show={this.state.show} handleClose ={this.handleClose} handleShow={this.handleShow} handleChange={this.handleChange} handleAdd = {this.handleAdd} />
+          <MoviesListe movies ={this.state.movies} starRate={this.state.starRate}  addToFavorite={this.addToFavorite} />
+          
+          <Favory favoriteList={this.state.f} />
          
-           <Search handleSearch ={this.handleSearch} search = {this.state.search}/>
-           <div className="starRating">
-           <div >
-                  {this.state.totStars.map(el => 
-                  <button onClick={()=>this.getRate(el)}>{this.state.starClicked}
-                    </button>)}
-               </div>
-               <div className="resetRate">
-                 <button onClick={()=> this.resetRate()}> 
-                 <img src="https://img.favpng.com/19/16/1/computer-icons-reboot-reset-png-favpng-mGHHcjcZHFyMyHxQrmbfkzBaR.jpg" width="35px"/> </button>
-               </div>
-           </div>
-
-           
-
-           <div>
-           <Button variant="outline-danger">Sign Up</Button>
-           <Button variant="outline-primary">Login</Button>
-           </div>
-
-        </Navbar>
-
-
-        <AddMovie  show={this.state.show} handleClose ={this.handleClose} handleShow={this.handleShow} handleChange={this.handleChange} handleAdd = {this.handleAdd} />
-        <MoviesListe movies ={this.state.movies} starRate={this.state.starRate}  addToFavorite={this.addToFavorite} />
+          
         
-        <Favory favoriteList={this.state.f} />
-       
-        
-      
-      </div>
-    );
+        </div>
+      );
+
+    }
+   
   }
  
 }
 
 export default App;
-
-/* <div>
-          <Link className="navbarlink" to={"FavoriteMovies"}> My favorite movies </Link>
-        </div>
-        import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
-        commit 612863e064f66b03e09d2abcecb316d6ce8f3af6
-      
-
-       <button className="buttonDescription" onClick={() => this.props.addToFavorite(el)}> waak  </button> 
-        addToFavorite = (el) => {
-        let index = this.state.f.indexOf(el);
-        if(index === -1) {
-          return (this.state.f.unshift(el))
-          console.log(this.state.f)
-        }
-        else if(index > -1){
-          return this.state.f.splice(index, 1);
-        }
-        
-      }
-
-        */
 
